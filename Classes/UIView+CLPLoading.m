@@ -172,15 +172,17 @@ static CGFloat CLPTextMaxWidth = 270;
 
 - (void)clp_showCustomView:(UIView *)view animated:(BOOL)animated
 {
-    [self _positionView:view];
-    if (self.presentView) {
-        __weak typeof(self) weakSelf = self;
-        [self _replaceView:self.presentView withView:view animated:animated complete:^{
-            weakSelf.presentView = view;
-        }];
-    } else {
-        self.presentView = view;
-        [self _hideSubviewsWithShowView:self.presentView animated:animated complete:NULL];
+    if (view != self.presentView) {
+        [self _positionView:view];
+        if (self.presentView) {
+            __weak typeof(self) weakSelf = self;
+            [self _replaceView:self.presentView withView:view animated:animated complete:^{
+                weakSelf.presentView = view;
+            }];
+        } else {
+            self.presentView = view;
+            [self _hideSubviewsWithShowView:self.presentView animated:animated complete:NULL];
+        }
     }
 }
 
