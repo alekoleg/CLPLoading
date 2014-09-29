@@ -311,8 +311,8 @@ static CGFloat CLPTextMaxWidth = 270;
     newView.alpha = 0.0;
     [self addSubview:newView];
     void (^animationBlock) (void) = ^{
-        newView.alpha = 0.0;
-        view.alpha = 1.0;
+        newView.alpha = 1.0;
+        view.alpha = 0.0;
     };
     
     if (animated) {
