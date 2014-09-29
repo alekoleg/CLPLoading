@@ -65,6 +65,7 @@ typedef void(^CLPLoadingEmptyBlock)(void);
  *   Remove all loading, error, view. And restore subviews.
  */
 - (void)clp_hideAll;
+- (void)clp_hideAllWithAnimation:(BOOL)animated postAnimationBlock:(CLPLoadingEmptyBlock)postAnimation complete:(CLPLoadingEmptyBlock)complete;
 
 //Global UI setup
 + (void)clp_setTextLabelColor:(UIColor *)color;

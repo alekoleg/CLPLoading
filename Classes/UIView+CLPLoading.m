@@ -186,17 +186,27 @@ static CGFloat CLPTextMaxWidth = 270;
     }
 }
 
-- (void)clp_hideAll {
+- (void)clp_hideAll
+{
+    [self clp_hideAllWithAnimation:YES postAnimationBlock:NULL complete:NULL];
+}
+
+- (void)clp_hideAllWithAnimation:(BOOL)animated postAnimationBlock:(CLPLoadingEmptyBlock)postAnimation complete:(CLPLoadingEmptyBlock)complete
+{
     if ([self presentView]) {
         __weak typeof(self) weakSelf = self;
-        [self _restoreSubviewsWithRemoveView:self.presentView animated:YES complete:^{
+        [self _restoreSubviewsWithRemoveView:self.presentView animated:animated postAnimationBlock:postAnimation complete:^{
             [weakSelf.presentView removeFromSuperview];
             weakSelf.presentView = nil;
             [weakSelf setSubViewsAlphas:nil];
             [weakSelf setRetryBlock:nil];
             [weakSelf setOtherBlock:nil];
+            if (complete) {
+                complete();
+            }
         }];
     }
+
 }
 
 #pragma mark - Variables -
@@ -260,7 +270,7 @@ static CGFloat CLPTextMaxWidth = 270;
     }
 }
 
-- (void)_restoreSubviewsWithRemoveView:(UIView *)view animated:(BOOL)animated complete:(CLPLoadingEmptyBlock)complete
+- (void)_restoreSubviewsWithRemoveView:(UIView *)view animated:(BOOL)animated postAnimationBlock:(CLPLoadingEmptyBlock)postAnimation complete:(CLPLoadingEmptyBlock)complete
 {
     void (^animationBlock) (void) = ^{
         int index = 0;
@@ -275,6 +285,10 @@ static CGFloat CLPTextMaxWidth = 270;
             }
         }
         view.alpha = 0.0;
+        
+        if (postAnimation) {
+            postAnimation();
+        }
     };
     
     if (animationBlock) {
