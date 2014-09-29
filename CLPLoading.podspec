@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CLPLoading"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "Loading lib"
   s.description  = "library that helps easy show loading and errors"
   s.homepage     = "https://github.com/alekoleg/CLPLoading"
