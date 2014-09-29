@@ -167,15 +167,20 @@ static CGFloat CLPTextMaxWidth = 270;
 
 - (void)clp_showCustomView:(UIView *)view
 {
+    [self clp_showCustomView:view animated:NO];
+}
+
+- (void)clp_showCustomView:(UIView *)view animated:(BOOL)animated
+{
     [self _positionView:view];
     if (self.presentView) {
         __weak typeof(self) weakSelf = self;
-        [self _replaceView:self.presentView withView:view animated:YES complete:^{
+        [self _replaceView:self.presentView withView:view animated:animated complete:^{
             weakSelf.presentView = view;
         }];
     } else {
         self.presentView = view;
-        [self _hideSubviewsWithShowView:self.presentView animated:YES complete:NULL];
+        [self _hideSubviewsWithShowView:self.presentView animated:animated complete:NULL];
     }
 }
 
@@ -259,7 +264,11 @@ static CGFloat CLPTextMaxWidth = 270;
         int index = 0;
         for (UIView *v in self.subviews) {
             if (v != view) {
-                v.alpha = [self.subViewsAlphas[index] floatValue];
+                if (index < self.subViewsAlphas.count) {
+                    v.alpha = [self.subViewsAlphas[index] floatValue];
+                } else {
+                    v.alpha = 1.0;
+                }
                 index++;
             }
         }

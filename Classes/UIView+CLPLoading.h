@@ -16,6 +16,7 @@ typedef void(^CLPLoadingEmptyBlock)(void);
  *   Shows UIActivityIndicatorView
  */
 - (UIActivityIndicatorView *)clp_showLoading;
+- (UIActivityIndicatorView *)clp_showLoading;
 
 /**
  *   Shows UIActivityIndicatorView with text Localizable key @"clp_loading"
@@ -58,6 +59,7 @@ typedef void(^CLPLoadingEmptyBlock)(void);
  *   Hide all subviews and shows view
  */
 - (void)clp_showCustomView:(UIView *)view;
+- (void)clp_showCustomView:(UIView *)view animated:(BOOL)animated;
 
 /**
  *   Remove all loading, error, view. And restore subviews.
