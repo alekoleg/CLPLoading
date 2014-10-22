@@ -113,7 +113,7 @@ static CGFloat CLPTextMaxWidth = 270;
     float maxWidth = MAX(label.frame.size.width, imageView.frame.size.width);
     float buttonWidth = maxWidth / 2 - 2 * horizontalBetween;
     UIButton *retryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonWidth, 44)];
-    [retryButton setTitle:otherButtonTitle forState:UIControlStateNormal];
+    [retryButton setTitle:retryButtonTitle forState:UIControlStateNormal];
     [retryButton addTarget:self action:@selector(clp_retryClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *otherButton = nil;
