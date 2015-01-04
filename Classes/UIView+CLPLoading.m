@@ -58,6 +58,7 @@ static CGFloat CLPTextMaxWidth = 270;
         });
         [container addSubview:label];
     }
+    container.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self clp_showCustomView:container];
     return indicator;
 }
