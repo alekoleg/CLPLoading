@@ -23,17 +23,33 @@ static CGFloat CLPTextMaxWidth = 270;
     return [self clp_showLoadingWithCustomText:nil];
 }
 
+- (UIActivityIndicatorView *)clp_showLoadingWithColor:(UIColor *)color {
+    return [self clp_showLoadingWithCustomText:nil withStyle:UIActivityIndicatorViewStyleGray color:color];
+}
+
+- (UIActivityIndicatorView *)clp_showLoadingWithStyle:(UIActivityIndicatorViewStyle)style {
+    return [self clp_showLoadingWithCustomText:nil withStyle:style color:CLPActivityColor];
+}
+
 - (UIActivityIndicatorView *)clp_showLoadingWithText {
     return [self clp_showLoadingWithCustomText:NSLocalizedString(@"clp_loading", nil)];
 }
 
 - (UIActivityIndicatorView *)clp_showLoadingWithCustomText:(NSString *)text {
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    return [self clp_showLoadingWithCustomText:text withStyle:UIActivityIndicatorViewStyleGray color:CLPActivityColor];
+}
+
+- (UIActivityIndicatorView *)clp_showLoadingWithCustomText:(NSString *)text withStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color {
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     indicator.frame = CGRectMake(0, 0, 44, 44);
     if (CLPActivityColor) {
         indicator.color = CLPActivityColor;
     } else {
         indicator.color = self.tintColor;
+    }
+    
+    if (color) {
+        indicator.color = color;
     }
 
     [indicator startAnimating];

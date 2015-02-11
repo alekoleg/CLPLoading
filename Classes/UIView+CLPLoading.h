@@ -16,6 +16,8 @@ typedef void(^CLPLoadingEmptyBlock)(void);
  *   Shows UIActivityIndicatorView
  */
 - (UIActivityIndicatorView *)clp_showLoading;
+- (UIActivityIndicatorView *)clp_showLoadingWithStyle:(UIActivityIndicatorViewStyle)style;
+- (UIActivityIndicatorView *)clp_showLoadingWithColor:(UIColor *)color;
 
 /**
  *   Shows UIActivityIndicatorView with text Localizable key @"clp_loading"
