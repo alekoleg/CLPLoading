@@ -13,6 +13,7 @@ static UIFont *CLPLabelTextFont = nil;
 static UIColor *CLPTextColor = nil;
 static UIColor *CLPActivityColor = nil;
 static CGFloat CLPTextMaxWidth = 270;
+static UIColor *CLPButtonTextColor = nil;
 
 @implementation UIView (CLPLoading)
 
@@ -132,12 +133,15 @@ static CGFloat CLPTextMaxWidth = 270;
     UIButton *retryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonWidth, 44)];
     [retryButton setTitle:retryButtonTitle forState:UIControlStateNormal];
     [retryButton addTarget:self action:@selector(clp_retryClicked:) forControlEvents:UIControlEventTouchUpInside];
+    UIColor *buttonColor = (CLPButtonTextColor != nil) ? CLPButtonTextColor : [UIApplication sharedApplication].keyWindow.tintColor;
+    [retryButton setTitleColor:buttonColor forState:UIControlStateNormal];
     
     UIButton *otherButton = nil;
     if (otherButtonTitle) {
         otherButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonWidth, 44)];
         [otherButton setTitle:otherButtonTitle forState:UIControlStateNormal];
         [otherButton addTarget:self action:@selector(clp_otherButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [otherButton setTitleColor:buttonColor forState:UIControlStateNormal];
     }
     
     float viewHegiht = imageView.frame.size.height + label.frame.size.height + retryButton.frame.size.height + verticalBetween * 4 + verticalBetween * (image != nil);
@@ -411,6 +415,10 @@ static CGFloat CLPTextMaxWidth = 270;
 
 + (void)clp_setTextLabelMaxWidth:(CGFloat)width {
     CLPTextMaxWidth = width;
+}
+
++ (void)clp_setButtonTextColor:(UIColor *)color {
+    CLPButtonTextColor = color;
 }
 
 

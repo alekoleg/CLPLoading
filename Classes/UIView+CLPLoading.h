@@ -73,5 +73,6 @@ typedef void(^CLPLoadingEmptyBlock)(void);
 + (void)clp_setTextLabelFont:(UIFont *)font;
 + (void)clp_setActivityIndicatorColor:(UIColor *)color;
 + (void)clp_setTextLabelMaxWidth:(CGFloat)width;
++ (void)clp_setButtonTextColor:(UIColor *)color;
 
 @end
